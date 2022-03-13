@@ -8,4 +8,22 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
+    public function hola($nombre)
+    {
+      //  return view('vistahola');
+        //echo "hola mundo ".$nombre;
+        $data=[
+          "cosaUno"=>$nombre
+        ];
+        return view('vistahola', $data);
+    }
+    public function paginas($numero)
+    {
+      if ($numero%2==0){
+          return view('welcome_message');
+      }
+      else {
+          return view('vistahola');
+      }
+    }
 }
