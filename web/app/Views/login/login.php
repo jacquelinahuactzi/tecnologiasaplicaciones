@@ -9,7 +9,8 @@
       </div>
       <div class="card-body">
         <p class="login-box-msg">Iniciar sesión</p>
-        <?= form_open("LoginController/validar"); ?>
+        <?= form_open("validar"); ?>
+          <?= csrf_field() ?>
           <div class="input-group mb-3">
             <?= form_input("email","",["class"=>"form-control","placeholder"=>"Correo electrónico","required"=>"required"]);?>
             <div class="input-group-append">

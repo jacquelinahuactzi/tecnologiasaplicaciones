@@ -31,10 +31,17 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-
-$routes->get('/', 'LoginController::index');
+$routes->match(['get', 'post'], 'news/create', 'News::create');
+$routes->get('/', 'LoginController::index',['as'=>"inicio"]);
+//$routes->get('dashboard', 'Dashboard::index',['as'=>'dashboard']);
+$routes->get('/clear', 'DbController::clear');
 $routes->get('/registrar', 'LoginController::registrar');
 $routes->get('/recuperar', 'LoginController::recuperar');
+$routes->post('/validar','LoginController::validar',['as'=>'validar']);
+$routes->group('admin', function ($route){
+  $route->get('dashboard', 'Dashboard::index',['as'=>'dashboard']);
+});
+
 //$routes->get('/', 'LoginController::index');
 //$routes->get('/hola/(:any)', 'Home::hola/$1');
 //$routes->get('/paginas/(:any)', 'Home::paginas/$1');
@@ -44,10 +51,10 @@ $routes->get('/recuperar', 'LoginController::recuperar');
 //$routes->get('news', 'News::index');
 //$routes->get('(:any)', 'Pages::view/$1');
 
-$routes->match(['get', 'post'], 'news/create', 'News::create');
-$routes->get('news/(:segment)', 'News::view/$1');
-$routes->get('news', 'News::index');
-$routes->get('(:any)', 'Pages::view/$1');
+//$routes->match(['get', 'post'], 'news/create', 'News::create');
+//$routes->get('news/(:segment)', 'News::view/$1');
+//$routes->get('news', 'News::index');
+//$routes->get('(:any)', 'Pages::view/$1');
 
 /*
  * --------------------------------------------------------------------
